@@ -1,8 +1,10 @@
-import DataFrameImplicits._
+package tool.`implicit`
+
 import org.apache.spark.sql.expressions.Window
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.IntegerType
 import org.apache.spark.sql.{Column, DataFrame}
+import tool.`implicit`.DataFrameImplicits._
 
 
 object DataFrameTimeAggImplicits {
@@ -144,7 +146,7 @@ object DataFrameTimeAggImplicits {
         .pivot(pivotCol)
         .sum()
         .transform(conditionnalTransform(milestones.length == 1)(_.dropColsContaining("khouza3bila")))
-        .renameExistValueColumns(lib)
+        .renameColumnsWithAggHeuristic(lib)
     }
 
     /**
@@ -197,7 +199,7 @@ object DataFrameTimeAggImplicits {
         .checkDateMonthMilestone(dateCol, baseDtCol, milestones:_*)
         .groupBy(grpByCol, pivotCol)
         .sum()
-        .renameExistValueColumns(lib)
+        .renameColumnsWithAggHeuristic(lib)
     }
 
     def checkValGroupPivotSumRen(dateCol:String, baseDtCol:String, valCol:String,
@@ -211,7 +213,7 @@ object DataFrameTimeAggImplicits {
         .pivot(pivotCol)
         .sum()
         .transform(conditionnalTransform(milestones.length == 1)(_.dropColsContaining("khouza3bila")))
-        .renameExistValueColumns(lib)
+        .renameColumnsWithAggHeuristic(lib)
     }
 
     def checkValGroupSumRen(dateCol:String, baseDtCol:String, valCol:String,
@@ -222,7 +224,7 @@ object DataFrameTimeAggImplicits {
         .drop(valCol)
         .groupBy(grpByCol, pivotCol)
         .sum()
-        .renameExistValueColumns(lib)
+        .renameColumnsWithAggHeuristic(lib)
     }
 
 

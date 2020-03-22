@@ -1,4 +1,4 @@
-package tool.`implicit`
+package tool.implicits
 
 import java.sql.Date
 import java.util.Calendar
@@ -8,9 +8,7 @@ import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types.FloatType
 import org.apache.spark.sql.{Column, DataFrame}
 
-/**
- * Those implicits were used in a spark feature engineering code, mainly to make the code concise and readable
- */
+
 object DataFrameImplicits {
 
   /**

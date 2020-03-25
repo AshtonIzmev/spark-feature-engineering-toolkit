@@ -51,7 +51,7 @@ object DataFrameEngineeringImplicits {
                               lib:String, milestones:Seq[Int]) = {
       df
         .checkDateMonthMilestone(dateCol, baseDtCol, milestones:_*)
-        .valDateMonthMilestone(dateCol, baseDtCol, valCol, "tmp", milestones:_*)
+        .valDateMonthMilestone(dateCol, baseDtCol, valCol, "v", milestones:_*)
         .drop(valCol)
         .groupBy(grpByCol, pivotCol)
         .sum()
@@ -104,7 +104,7 @@ object DataFrameEngineeringImplicits {
       df
         .conditionnalTransform(milestones.length == 1)(_.withColumn("khouza3bila", lit(1)))
         .checkDateMonthMilestone(dateCol, baseDtCol, milestones:_*)
-        .valDateMonthMilestone(dateCol, baseDtCol, valCol, "tmp", milestones:_*)
+        .valDateMonthMilestone(dateCol, baseDtCol, valCol, "v", milestones:_*)
         .drop(valCol)
         .groupBy(grpByCol)
         .pivot(pivotCol)
@@ -173,7 +173,7 @@ object DataFrameEngineeringImplicits {
         .sum()
         .conditionnalTransform(intervals.length == 1)(_.dropColsContaining("khouza3bila"))
         .dropColsContaining("tmp").dropColsContaining("sum(sum")
-        .remString("sum")
+        .remString("sum").remString("(").remString(")")
     }
 
   }

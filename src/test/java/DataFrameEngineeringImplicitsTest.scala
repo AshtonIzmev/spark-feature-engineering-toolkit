@@ -3,7 +3,7 @@ import org.scalactic.TolerantNumerics
 import org.scalatest.funsuite.AnyFunSuite
 import tool.implicits.DataFrameEngineeringImplicits.DataFrameEngineeringImprovements
 
-class DataFframeEngineeringImplicitsTest extends AnyFunSuite {
+class DataFrameEngineeringImplicitsTest extends AnyFunSuite {
 
   val eps = 1e-4f
   implicit val doubleEq = TolerantNumerics.tolerantDoubleEquality(eps)

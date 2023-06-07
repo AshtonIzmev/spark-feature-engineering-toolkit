@@ -1,5 +1,8 @@
+package tool
+
 import core.DataCore
-import org.apache.spark.sql.DataFrame
+import core.DataCore.spark
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object DataLoading {
 
@@ -9,6 +12,12 @@ object DataLoading {
       .option("inferSchema", inferSchema)
       .option("header", "true")
       .load(filename)
+  }
+
+  def loadS3(filePath: String)  = {
+    DataCore.spark.read.format("csv")
+      .option("header", "true")
+      .load("s3a://"+filePath)
   }
 
 }

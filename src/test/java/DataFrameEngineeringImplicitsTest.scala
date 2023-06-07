@@ -1,6 +1,7 @@
 import org.apache.spark.sql.functions._
 import org.scalactic.TolerantNumerics
 import org.scalatest.funsuite.AnyFunSuite
+import tool.DataLoading
 import tool.implicits.DataFrameEngineeringImplicits.DataFrameEngineeringImprovements
 
 class DataFrameEngineeringImplicitsTest extends AnyFunSuite {

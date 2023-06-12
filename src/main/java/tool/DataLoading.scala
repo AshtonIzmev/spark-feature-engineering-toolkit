@@ -14,10 +14,4 @@ object DataLoading {
       .load(filename)
   }
 
-  def loadS3(filePath: String)  = {
-    DataCore.spark.read.format("csv")
-      .option("header", "true")
-      .load("s3a://"+filePath)
-  }
-
 }
